@@ -1,5 +1,21 @@
 import * as THREE from "three";
 
+const createButton = options => {
+  const { width, height, image } = options;
+
+  const geometry = new THREE.PlaneBufferGeometry(width, height);
+
+  const loader = new THREE.TextureLoader();
+
+  const material = new THREE.MeshBasicMaterial({
+    map: loader.load(image),
+  });
+
+  const button = new THREE.Mesh(geometry, material);
+
+  return button;
+};
+
 const meshPhongInstance = (geometry, color, x, scene) => {
   const material = new THREE.MeshPhongMaterial({ color });
 
@@ -28,6 +44,7 @@ const resizeRendererToDisplaySize = renderer => {
 };
 
 export default {
+  createButton,
   meshPhongInstance,
   resizeRendererToDisplaySize,
 };

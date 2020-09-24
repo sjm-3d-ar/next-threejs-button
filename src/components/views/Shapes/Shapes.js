@@ -37,15 +37,11 @@ const Shapes = () => {
 
     const scene = new THREE.Scene();
 
-    const geometry = new THREE.PlaneBufferGeometry(1, 1);
-
-    const loader = new THREE.TextureLoader();
-
-    const material = new THREE.MeshBasicMaterial({
-      map: loader.load("images/twitter.png"),
+    const button = tj.createButton({
+      width: 1,
+      height: 1,
+      image: "images/twitter.png",
     });
-
-    const button = new THREE.Mesh(geometry, material);
     scene.add(button);
 
     {
