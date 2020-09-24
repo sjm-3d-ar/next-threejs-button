@@ -42,13 +42,30 @@ const Shapes = () => {
         name: "TwitterBtn",
         width: 1,
         height: 1,
-        image: "images/twitter.png",
+        radius: 0.1,
+        color: "blue",
+        // image: "images/twitter.png",
         onClick: event => console.log("clicked on:", event.target),
       },
       camera,
       renderer,
     );
     scene.add(button);
+
+    const button2 = tj.createButton(
+      {
+        name: "TwitterBtn",
+        width: 1,
+        height: 1,
+        // radius: 0.1,
+        // color: 0xff0000,
+        image: "images/twitter.png",
+        onClick: event => console.log("clicked on:", event.target),
+      },
+      camera,
+      renderer,
+    );
+    scene.add(button2);
 
     {
       const color = 0xffffff;
