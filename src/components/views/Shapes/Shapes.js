@@ -31,15 +31,15 @@ const Shapes = () => {
     const fov = 75;
     const aspect = 2; // w / h
     const near = 0.1;
-    const far = 5;
+    const far = 500;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 2;
+    camera.position.z = 5;
 
     const scene = new THREE.Scene();
 
     const button = tj.createButton(
       {
-        name: "TwitterBtn",
+        name: "textBtn",
         width: 1,
         height: 1,
         radius: 0.1,
@@ -51,6 +51,7 @@ const Shapes = () => {
       renderer,
     );
     scene.add(button);
+    button.position.set(-1, -0.5, 0);
 
     const button2 = tj.createButton(
       {
@@ -66,6 +67,9 @@ const Shapes = () => {
       renderer,
     );
     scene.add(button2);
+    button2.position.x = 1;
+    button2.position.y = 0;
+    button2.position.z = 0;
 
     {
       const color = 0xffffff;
