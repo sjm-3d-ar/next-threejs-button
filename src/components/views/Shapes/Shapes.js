@@ -37,16 +37,16 @@ const Shapes = () => {
 
     const scene = new THREE.Scene();
 
-    const boxWidth = 1;
-    const boxHeight = 1;
-    const boxDepth = 1;
-    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+    const geometry = new THREE.PlaneBufferGeometry(1, 1);
 
-    const cubes = [
-      tj.meshPhongInstance(geometry, 0x44aa88, 0, scene),
-      tj.meshPhongInstance(geometry, 0x8844aa, -2, scene),
-      tj.meshPhongInstance(geometry, 0xaa8844, 2, scene),
-    ];
+    const loader = new THREE.TextureLoader();
+
+    const material = new THREE.MeshBasicMaterial({
+      map: loader.load("images/twitter.png"),
+    });
+
+    const button = new THREE.Mesh(geometry, material);
+    scene.add(button);
 
     {
       const color = 0xffffff;
@@ -56,9 +56,7 @@ const Shapes = () => {
       scene.add(light);
     }
 
-    const render = time => {
-      time *= 0.001;
-
+    const render = () => {
       // this resizing logic may not be necessary. it seemed to behave as needed without it.
       // this is possibly due to a later version of three.js? as the tutorial described
       // different behavior.
@@ -67,11 +65,6 @@ const Shapes = () => {
         camera.aspect = canvas.current.clientWidth / canvas.current.clientHeight;
         camera.updateProjectionMatrix();
       }
-
-      cubes.forEach(cube => {
-        cube.rotation.x = time;
-        cube.rotation.y = time;
-      });
 
       renderer.render(scene, camera);
 
