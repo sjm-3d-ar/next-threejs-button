@@ -1,7 +1,8 @@
 import * as THREE from "three";
+import DomEvents from "./threex.domevents";
 
-const createButton = options => {
-  const { width, height, image } = options;
+const createButton = (options, camera, renderer) => {
+  const { width, height, image, onClick, name } = options;
 
   const geometry = new THREE.PlaneBufferGeometry(width, height);
 
@@ -12,6 +13,11 @@ const createButton = options => {
   });
 
   const button = new THREE.Mesh(geometry, material);
+
+  button.name = name;
+
+  const domEvents = new DomEvents(camera, renderer.domElement);
+  domEvents.addEventListener(button, "click", event => onClick(event));
 
   return button;
 };

@@ -37,11 +37,17 @@ const Shapes = () => {
 
     const scene = new THREE.Scene();
 
-    const button = tj.createButton({
-      width: 1,
-      height: 1,
-      image: "images/twitter.png",
-    });
+    const button = tj.createButton(
+      {
+        name: "TwitterBtn",
+        width: 1,
+        height: 1,
+        image: "images/twitter.png",
+        onClick: event => console.log("clicked on:", event.target),
+      },
+      camera,
+      renderer,
+    );
     scene.add(button);
 
     {
